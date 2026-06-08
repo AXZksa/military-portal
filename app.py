@@ -57,7 +57,7 @@ def inject_globals():
         'system_locked_global': locked,
         'startup_warning': sw,
         'now': ksa().strftime('%H:%M'),
-        'now_iso': ksa().isoformat(),
+        'now_ts': int(ksa().timestamp() * 1000),
         'facility_lat': FACILITY_LOCATION[0],
         'facility_lng': FACILITY_LOCATION[1],
         'allowed_radius': ALLOWED_RADIUS,

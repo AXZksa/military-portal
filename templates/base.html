@@ -236,8 +236,8 @@
         var ct = document.getElementById('clockTime');
         var cd = document.getElementById('clockDate');
         var sc = document.getElementById('sClockTime');
-        var serverBase = new Date('{{ now_iso }}');
-        var offset = serverBase.getTime() - Date.now();
+        var serverTs = {{ now_ts }};
+        var offset = serverTs - Date.now();
         function tick() {
             var d = new Date(Date.now() + offset);
             var h = pad(d.getHours()), m = pad(d.getMinutes()), s = pad(d.getSeconds());
