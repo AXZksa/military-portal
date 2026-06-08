@@ -12,6 +12,10 @@ load_dotenv()
 app = Flask(__name__)
 app.secret_key = os.getenv('SECRET_KEY', secrets.token_hex(32))
 app.permanent_session_lifetime = datetime.timedelta(hours=8)
+
+if os.getenv('RESET_ADMIN_DEVICE', '').lower() in ('1', 'true', 'yes'):
+    db_run("UPDATE users SET device_uid='', updated_at=ksa_str() WHERE role='admin'")
+    print("[startup] تم reset أجهزة جميع المشرفين")
 limiter = Limiter(app=app, key_func=get_remote_address, default_limits=["300/minute"])
 
 @app.after_request
